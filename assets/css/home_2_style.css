@@ -373,6 +373,13 @@
     height: 35px;
   }
 }
+
+
+@media (prefers-color-scheme: dark) {
+  .tc-header-st2 .circle {
+    display: none;
+  }
+}
 /* --------------- features st2 --------------- */
 .tc-features-st2 {
   position: relative;
