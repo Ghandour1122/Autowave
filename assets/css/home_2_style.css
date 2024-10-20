@@ -1549,3 +1549,11 @@
     font-size: 35px;
   }
 }
+
+.links-footer{
+    display: ruby-text;
+}
+
+.links-footer-li{
+    margin-inline: 4px;
+}
