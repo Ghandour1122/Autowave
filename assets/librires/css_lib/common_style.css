@@ -35,6 +35,11 @@ body {
   transition: opacity 1s ease;
 }
 
+.hidden-content {
+  display: none;
+}
+
+
 .swiper-container {
   overflow: hidden;
 }

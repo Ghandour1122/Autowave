@@ -139,7 +139,7 @@ $(function () {
 
 
 // ------------ Preloader -----------
-$( function() {
+$(function() {
     const svg = document.getElementById("svg");
     const tl = gsap.timeline();
     const curve = "M0 502S175 272 500 272s500 230 500 230V0H0Z";
@@ -149,6 +149,10 @@ $( function() {
         delay: 1.5,
         y: -100,
         opacity: 0,
+    });
+    tl.to("#scrollsmoother-container", {
+        className: "-=hidden-content",
+        duration: 0,
     });
     tl.to(svg, {
         duration: 0.5,
@@ -182,7 +186,9 @@ $( function() {
         },
         "-=1.5"
     );
+    
 });
+
 
 
 $(window).on("load", function () {
@@ -197,29 +203,34 @@ $(window).on("load", function () {
 });
 
       // ------------ mousecursor scripts -----------
-      $( function() {
+    $( function() {
         function mousecursor() {
-            if ($('.cursor').length) {
-                const cursor = document.querySelector('.cursor'),
-                    cursorTwo = document.querySelector('.cursor2');
+            if ($("body")) {
+                const e = document.querySelector(".cursor-inner"),
+                    t = document.querySelector(".cursor-outer");
+                let n, i = 0,
+                    o = !1;
+                window.onmousemove = function (s) {
+                    o || (t.style.transform = "translate(" + s.clientX + "px, " + s.clientY + "px)"), e.style.transform = "translate(" + s.clientX + "px, " + s.clientY + "px)", n = s.clientY, i = s.clientX
+                },
+                $("body").on("mouseenter", "a, .cursor-pointer", function () {
+                    e.classList.add("cursor-hover"), t.classList.add("cursor-hover")
+                })
+                , $("body").on("mouseleave", "a, .cursor-pointer", function () {
+                    e.classList.remove("cursor-hover"), t.classList.remove("cursor-hover")
+                }),
 
-                document.addEventListener('mousemove', function(e) {
-                    if(cursor) cursor.style.cssText = cursorTwo.style.cssText = 'left: ' + e.clientX + 'px; top: ' + e.clientY + 'px;';
-                });
+                    // $("body").on("mouseenter", ".swiper-wrapper.curs-scroll", function () {
+                    //     e.classList.add("cursor-scroll"), t.classList.add("cursor-scroll")
+                    // }), $("body").on("mouseleave", ".swiper-wrapper.curs-scroll", function () {
+                    //     $(this).is("a") && $(this).closest(".cursor-pointer").length || (e.classList.remove("cursor-scroll"), t.classList.remove("cursor-scroll"))
+                    // }),
 
-                $('body').on('mouseenter', 'a, .cursor-pointer', function() {
-                    if(cursor) cursor.classList.add('active');
-                    if(cursorTwo) cursorTwo.classList.add('active');
-                });
-
-                $('body').on('mouseleave', 'a, .cursor-pointer', function() {
-                    if(cursor) cursor.classList.remove('active');
-                    if(cursorTwo) cursorTwo.classList.remove('active');
-                });
+                    e.style.visibility = "visible", t.style.visibility = "visible"
             }
-        }
+        };
 
-        $(function() {
+        $(function () {
             mousecursor();
         });
 
@@ -270,6 +281,13 @@ $(window).on("load", function () {
                 tl400.reverse();
             });
         });
+
+        if (typeof gsap !== 'undefined') {
+            // Your GSAP code here
+            gsap.to(".element", {duration: 2, x: 100});
+        } else {
+            console.error("GSAP is not defined");
+        }
 
     });
 

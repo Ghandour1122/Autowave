@@ -137,23 +137,9 @@ $(document).ready(function () {
 
 
 // ------------ gsap scripts -----------
-$(function() {
-    'use strict';
+$(function () {
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-    // Initialize GSAP plugins
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
-
-    // Create smoother only if ScrollSmoother exists
-    if(typeof ScrollSmoother !== 'undefined') {
-        ScrollSmoother.create({
-            wrapper: '#scrollsmoother-container',
-            content: 'main',
-            smooth: 2,
-            smoothTouch: 0.1,
-            effects: true
-        });
-    }
-    
     // create the smooth scroller FIRST!
     const smoother = ScrollSmoother.create({
         content: "#scrollsmoother-container",
@@ -204,8 +190,20 @@ $(function() {
         tl.from(itemSplitted.lines, { duration: 1, delay: 0.5, opacity: 0, rotationX: -80, force3D: true, transformOrigin: "top center -50", stagger: 0.1 });
     });
 
-});
+    if (typeof ScrollTrigger !== 'undefined') {
+        // Your ScrollTrigger code here
+        ScrollTrigger.create({
+            trigger: ".element",
+            start: "top center",
+            end: "bottom center",
+            onEnter: () => console.log("Entered"),
+            onLeave: () => console.log("Left")
+        });
+    } else {
+        console.error("ScrollTrigger is not defined");
+    }
 
+});
 
 // ------------ counter for the users count ------------------
 document.addEventListener("DOMContentLoaded", function() {
@@ -339,4 +337,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-  
