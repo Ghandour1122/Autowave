@@ -144,16 +144,20 @@ $(function() {
     const tl = gsap.timeline();
     const curve = "M0 502S175 272 500 272s500 230 500 230V0H0Z";
     const flat = "M0 2S175 1 500 1s500 1 500 1V0H0Z";
-
+    
     tl.to(".loader-wrap-heading .load-text , .loader-wrap-heading .cont", {
         delay: 1.5,
         y: -100,
         opacity: 0,
     });
-    tl.to("#scrollsmoother-container", {
-        className: "-=hidden-content",
-        duration: 0,
-    });
+    // tl.to("#scrollsmoother-container", {
+    //     className: "-=hidden-content",
+    //     duration: 0,
+    // });
+      // Show the hidden content with animation
+    const hiddenContent = document.querySelector('#scrollsmoother-container');
+    hiddenContent.classList.add('show');
+    
     tl.to(svg, {
         duration: 0.5,
         attr: { d: curve },
@@ -190,6 +194,14 @@ $(function() {
 });
 
 
+// window.addEventListener('load', function() {
+//     // Hide the loader
+//     document.querySelector('.loader-wrap').style.display = 'none';
+    
+//     // Show the hidden content with animation
+//     const hiddenContent = document.querySelector('#scrollsmoother-container');
+//     hiddenContent.classList.add('show');
+// });
 
 $(window).on("load", function () {
 
