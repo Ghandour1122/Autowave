@@ -137,9 +137,23 @@ $(document).ready(function () {
 
 
 // ------------ gsap scripts -----------
-$(function () {
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+$(function() {
+    'use strict';
 
+    // Initialize GSAP plugins
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
+
+    // Create smoother only if ScrollSmoother exists
+    if(typeof ScrollSmoother !== 'undefined') {
+        ScrollSmoother.create({
+            wrapper: '#scrollsmoother-container',
+            content: 'main',
+            smooth: 2,
+            smoothTouch: 0.1,
+            effects: true
+        });
+    }
+    
     // create the smooth scroller FIRST!
     const smoother = ScrollSmoother.create({
         content: "#scrollsmoother-container",
@@ -191,6 +205,7 @@ $(function () {
     });
 
 });
+
 
 // ------------ counter for the users count ------------------
 document.addEventListener("DOMContentLoaded", function() {

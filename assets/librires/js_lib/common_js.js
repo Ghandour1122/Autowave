@@ -197,34 +197,29 @@ $(window).on("load", function () {
 });
 
       // ------------ mousecursor scripts -----------
-    $( function() {
+      $( function() {
         function mousecursor() {
-            if ($("body")) {
-                const e = document.querySelector(".cursor-inner"),
-                    t = document.querySelector(".cursor-outer");
-                let n, i = 0,
-                    o = !1;
-                window.onmousemove = function (s) {
-                    o || (t.style.transform = "translate(" + s.clientX + "px, " + s.clientY + "px)"), e.style.transform = "translate(" + s.clientX + "px, " + s.clientY + "px)", n = s.clientY, i = s.clientX
-                },
-                $("body").on("mouseenter", "a, .cursor-pointer", function () {
-                    e.classList.add("cursor-hover"), t.classList.add("cursor-hover")
-                })
-                , $("body").on("mouseleave", "a, .cursor-pointer", function () {
-                    e.classList.remove("cursor-hover"), t.classList.remove("cursor-hover")
-                }),
+            if ($('.cursor').length) {
+                const cursor = document.querySelector('.cursor'),
+                    cursorTwo = document.querySelector('.cursor2');
 
-                    // $("body").on("mouseenter", ".swiper-wrapper.curs-scroll", function () {
-                    //     e.classList.add("cursor-scroll"), t.classList.add("cursor-scroll")
-                    // }), $("body").on("mouseleave", ".swiper-wrapper.curs-scroll", function () {
-                    //     $(this).is("a") && $(this).closest(".cursor-pointer").length || (e.classList.remove("cursor-scroll"), t.classList.remove("cursor-scroll"))
-                    // }),
+                document.addEventListener('mousemove', function(e) {
+                    if(cursor) cursor.style.cssText = cursorTwo.style.cssText = 'left: ' + e.clientX + 'px; top: ' + e.clientY + 'px;';
+                });
 
-                    e.style.visibility = "visible", t.style.visibility = "visible"
+                $('body').on('mouseenter', 'a, .cursor-pointer', function() {
+                    if(cursor) cursor.classList.add('active');
+                    if(cursorTwo) cursorTwo.classList.add('active');
+                });
+
+                $('body').on('mouseleave', 'a, .cursor-pointer', function() {
+                    if(cursor) cursor.classList.remove('active');
+                    if(cursorTwo) cursorTwo.classList.remove('active');
+                });
             }
-        };
+        }
 
-        $(function () {
+        $(function() {
             mousecursor();
         });
 
@@ -277,8 +272,8 @@ $(window).on("load", function () {
         });
 
     });
-    
 
-    
-  
+
+
+
 
